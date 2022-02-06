@@ -3,7 +3,7 @@ import click
 import cv2
 import os
 from lzw_compress import comprimir
-from lzw_decompress import decompress
+from lzw_decompress import descomprimir
 
 
 @click.group()
@@ -38,7 +38,7 @@ def decompress_file(input_file, output_file):
     if os.path.isfile(input_file) and len(input_file.split('_')) == 3:
         x, y = input_file.split('_')[:2]
         x, y = int(x), int(y)
-        decompress(input_file, output_file)
+        descomprimir(input_file, output_file)
         image = cv2.imread(output_file)
         image = cv2.resize(image, (x, y), interpolation=cv2.INTER_LINEAR)
         cv2.imwrite(output_file, image)
